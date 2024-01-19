@@ -1,0 +1,19 @@
+# paths
+*.egg-info/
+.cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+.vscode/
+build/
+dist/
+htmlcov/
+venv/
+
+# files
+*.log
+*.py[cod]
+.coverage
+.env
