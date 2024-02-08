@@ -3,8 +3,8 @@ requires = ["flit_core >=3.9,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "pyscaffold"
-authors = [{name = "My pyscaffold", email = "pyscaffold@email.com"}]
+name = "deduper"
+authors = [{name = "Daniel Rabstejnek", email = "rabstejnek@gmail.com"}]
 dynamic = ["version", "description"]
 readme = "README.md"
 requires-python = ">=3.12"
@@ -18,7 +18,7 @@ classifiers = [
   "Private :: Do Not Upload",
 ]
 dependencies = [
-  "typer",
+  "rapidfuzz",
 ]
 
 [project.optional-dependencies]
@@ -30,12 +30,9 @@ dev = [
 ]
 
 [project.urls]
-Home = "https://github.com/shapiromatron/pyscaffold"
-Changes = "https://github.com/shapiromatron/pyscaffold/blob/main/HISTORY.md"
-"Issue Tracker" = "https://github.com/shapiromatron/pyscaffold/issues"
-
-[project.scripts]
-pyscaffold = "pyscaffold.cli:app"
+Home = "https://github.com/rabstejnek/deduper"
+Changes = "https://github.com/rabstejnek/deduper/blob/main/HISTORY.md"
+"Issue Tracker" = "https://github.com/rabstejnek/deduper/issues"
 
 [tool.ruff]
 line-length = 100
@@ -45,7 +42,7 @@ ignore = ["E501", "B904", "B007", "S308", "S113", "S314"]
 unfixable = ["F401", "F841"]
 
 [tool.ruff.isort]
-known-first-party = ["pyscaffold"]
+known-first-party = ["deduper"]
 
 [tool.ruff.per-file-ignores]
 "test_*.py" = ["S101", "S106"]
