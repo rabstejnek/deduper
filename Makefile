@@ -37,5 +37,5 @@ build: clean ## Build python wheel package
 	@ls -l dist
 
 build-posit:  ## Build manifest for Posit Connect
-	rsconnect write-manifest shiny --overwrite --entrypoint=deduper.app .
+	rsconnect write-manifest shiny --overwrite --force-generate --entrypoint=deduper.app .
 	python bin/clean_manifest.py
