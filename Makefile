@@ -1,4 +1,4 @@
-.PHONY: clean lint format test coverage build
+.PHONY: clean lint format test coverage build build-posit
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -35,3 +35,7 @@ coverage: ## Generate coverage report
 build: clean ## Build python wheel package
 	@flit build
 	@ls -l dist
+
+build-posit:  ## Build manifest for Posit Connect
+	rsconnect write-manifest shiny --overwrite --entrypoint=deduper.app .
+	python bin/clean_manifest.py

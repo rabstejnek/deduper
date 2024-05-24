@@ -1,0 +1,36 @@
+name: Posit Connect
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - manifest.json
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install Dependencies
+        run: |
+            python -m pip install -U pip
+            python -m pip install -e ".[app,posit]"
+
+      - name: Build Posit Manifest
+        run: |
+          make build-posit
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action [bot]"
+          git commit -am "[skip ci] update Posit Connect manifest file" || echo "No changes to commit."
+          git push origin || true

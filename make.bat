@@ -7,6 +7,7 @@ if /I %1 == format goto :format
 if /I %1 == test goto :test
 if /I %1 == coverage goto :coverage
 if /I %1 == build goto :build
+if /I %1 == build-posit goto :build-posit
 goto :help
 
 :help
@@ -16,6 +17,7 @@ echo.  format       Fix formatting issues (where possible)
 echo.  test         Run tests
 echo.  coverage     Generate coverage report
 echo.  build        Build python wheel package
+echo.  build-posit  Build manifest for Posit Connect
 goto :eof
 
 :lint
@@ -40,4 +42,9 @@ rmdir /s /q .\build
 rmdir /s /q .\dist
 flit build
 dir .\dist
+goto :eof
+
+:build-posit
+rsconnect write-manifest shiny --overwrite --entrypoint=deduper.app .
+python bin\clean_manifest.py
 goto :eof

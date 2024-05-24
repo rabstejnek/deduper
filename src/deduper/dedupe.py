@@ -167,6 +167,11 @@ class DedupeModule:
         """
         raise NotImplementedError
 
+    def really_execute(self, obj_list_list:list[list[RenameMe]])->list[list[RenameMe]]:
+        self.obj_list_list = obj_list_list
+        index_list_list = [{(i1,i2) for i2 in range(len(obj_list))} for i1, obj_list in enumerate(obj_list_list)]
+        index_list_list = self.execute(index_list_list)
+        return [[obj_list_list[index[0]][index[1]] for index in index_list] for index_list in index_list_list]
 
 class UniqueDedupe(DedupeModule):
     """Dedupe by matching objects by their fields."""
@@ -199,7 +204,7 @@ class UniqueDedupe(DedupeModule):
         """
         # TODO update comment, make this a method on DedupeModule so it can be overridden
         # easily on each module
-        return obj.get(field)
+        return self.obj_list_list[obj[0]][obj[1]].get(field)
 
     def get_field_obj_set_list(self, obj_set: set[RenameMe], field: str) -> list[set[RenameMe]]:
         """Get objects grouped by field values.
@@ -242,6 +247,7 @@ class UniqueDedupe(DedupeModule):
                 )
             _obj_set_list.extend(joined_obj_set_list)
         return [obj_set for obj_set in _obj_set_list if len(obj_set) > 1]
+
 
 
 class UniqueTogetherDedupe(UniqueDedupe):
@@ -297,7 +303,7 @@ class FuzzyDedupe(DedupeModule):
             str: Field value.
         """
         # TODO update comment, refactor so that this uses a DedupeModule function
-        return obj.get(field) or ""
+        return self.obj_list_list[obj[0]][obj[1]].get(field) or ""
 
     def execute(self, obj_set_list: list[set[RenameMe]]) -> list[set[RenameMe]]:
         """Perform deduping on the object set list by splitting up candidate sets.
@@ -353,9 +359,9 @@ class Deduper:
         Returns:
             list[set[RenameMe]]: Duplicates.
         """
-        obj_set_list = [set(qs)]
+        obj_set_list = [qs]
         for module in cls.modules:
-            obj_set_list = module.execute(obj_set_list)
+            obj_set_list = module.really_execute(obj_set_list)
         return obj_set_list
 
     @classmethod
