@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "locale": "en_US.utf8",
+  "metadata": {
+    "appmode": "python-shiny",
+    "entrypoint": "deduper.app",
+    "primary_html": "Deduper"
+  },
+  "python": {
+    "version": "3.11.0",
+    "package_manager": {
+      "name": "pip",
+      "version": "24.0",
+      "package_file": "requirements.txt"
+    }
+  },
+  "files": {
+    "requirements.txt": {
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "pyproject.toml": {
+      "checksum": "18a2a8aa2862ab5d1a0377754d57ebd3"
+    },
+    "src/deduper/__init__.py": {
+      "checksum": "44f32dd2724ac73068bbaee0322c1878"
+    },
+    "src/deduper/app/__init__.py": {
+      "checksum": "44f32dd2724ac73068bbaee0322c1878"
+    },
+    "src/deduper/app/app.py": {
+      "checksum": "5df0ece3696b669c56d2da2ce983396a"
+    },
+    "src/deduper/app/constants.py": {
+      "checksum": "52040788eb431a6a92d5495a499cd083"
+    },
+    "src/deduper/dedupe.py": {
+      "checksum": "9609d0b41f8878d5ea20a9d145118960"
+    }
+  }
+}
