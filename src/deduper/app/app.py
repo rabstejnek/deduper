@@ -35,17 +35,17 @@ core_ui.card(
 
 @reactive.calc
 def records():
-    file = req(input.file())
+    file = req(input["file"]())
     with open(file[0]["datapath"], 'r', errors="ignore") as f:
         return rispy.load(f)
 
 @reactive.calc
 def deduper():
-    deduper_selection = req(input.deduper_select())
+    deduper_selection = req(input["deduper_select"]())
     return DEDUPER_MAP[deduper_selection]
 
 @reactive.calc
-@reactive.event(input.compute)
+@reactive.event(input["compute"])
 def results():
     return deduper().get_duplicates(records())
 
@@ -90,15 +90,15 @@ def render_annotate():
     ui.insert_ui(ui.input_checkbox(id="annotate", label="Annotate?"),"#annotate_container")
 
 @reactive.effect
-@reactive.event(input.annotate)
+@reactive.event(input["annotate"])
 def render_download():
     ui.remove_ui("#download_container *")
-    download_func = download_annotated_results if input.annotate() else download_results
+    download_func = download_annotated_results if input["annotate"]() else download_results
     ui.insert_ui(render.download(label="Download results", filename="duplicate_results.xlsx")(download_func),"#download_container")
 
 
 @reactive.effect
-@reactive.event(results_slice,input.annotate)
+@reactive.event(results_slice,input["annotate"])
 def render_results():
     ui.remove_ui("#results_container *")
     cards = []
@@ -107,7 +107,7 @@ def render_results():
         rows = []
         selected = annotations_slice()[x]
 
-        if input.annotate():
+        if input["annotate"]():
             for k,v in ANNOTATE_CHOICES.items():
                 checked = {"checked":"checked"} if k == selected else {}
                 radio_button = ui.tags.input(value=k,type="radio",name=id,**checked)
@@ -150,11 +150,11 @@ def render_results():
     ui.insert_ui(ui.div(*cards),"#results_container")
 
 @reactive.effect
-@reactive.event(*[getattr(input,f"duplicate_{i}") for i in range(PAGE_SIZE)])
+@reactive.event(*[input[f"duplicate_{i}"] for i in range(PAGE_SIZE)])
 def update_annotations():
     for x in range(len(results_slice())):
         y = (page()-1) * PAGE_SIZE + x
-        annotations()[y] = int(getattr(input,f"duplicate_{x}")())
+        annotations()[y] = int(input[f"duplicate_{x}"]())
     return
 
 
@@ -188,22 +188,22 @@ def render_pagination():
 
 
 @reactive.effect
-@reactive.event(input.page_start)
+@reactive.event(input["page_start"])
 def page_start():
     page.set(1)
 
 @reactive.effect
-@reactive.event(input.page_down)
+@reactive.event(input["page_down"])
 def page_down():
     page.set(page()-1)
 
 @reactive.effect
-@reactive.event(input.page_up)
+@reactive.event(input["page_up"])
 def page_up():
     page.set(page()+1)
 
 @reactive.effect
-@reactive.event(input.page_end)
+@reactive.event(input["page_end"])
 def page_end():
     page.set(math.ceil(len(results())/PAGE_SIZE))
 
