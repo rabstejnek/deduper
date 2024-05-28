@@ -3,7 +3,7 @@
   "locale": "en_US.utf8",
   "metadata": {
     "appmode": "python-shiny",
-    "entrypoint": "deduper.app",
+    "entrypoint": "deduper.app.app",
     "primary_html": "Deduper"
   },
   "python": {
@@ -16,7 +16,7 @@
   },
   "files": {
     "requirements.txt": {
-      "checksum": "05cd6461c4f40102ad5eb15bc4b7f157"
+      "checksum": "c933ea35e1a757948f56615a4d7525b1"
     },
     "pyproject.toml": {
       "checksum": "18a2a8aa2862ab5d1a0377754d57ebd3"
