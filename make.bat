@@ -45,6 +45,6 @@ dir .\dist
 goto :eof
 
 :build-posit
-rsconnect write-manifest shiny --overwrite --force-generate --entrypoint=deduper.app .
+rsconnect write-manifest shiny --overwrite --force-generate --entrypoint=deduper.app.app .
 python bin\clean_manifest.py
 goto :eof
