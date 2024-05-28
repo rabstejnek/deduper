@@ -16,7 +16,7 @@
   },
   "files": {
     "requirements.txt": {
-      "checksum": "c933ea35e1a757948f56615a4d7525b1"
+      "checksum": "569926b4da588e8ad52f85c05d3a08a5"
     },
     "pyproject.toml": {
       "checksum": "18a2a8aa2862ab5d1a0377754d57ebd3"
@@ -28,7 +28,7 @@
       "checksum": "44f32dd2724ac73068bbaee0322c1878"
     },
     "src/deduper/app/app.py": {
-      "checksum": "5df0ece3696b669c56d2da2ce983396a"
+      "checksum": "1d28db1ab498b3850a2ed663b3b8981b"
     },
     "src/deduper/app/constants.py": {
       "checksum": "52040788eb431a6a92d5495a499cd083"
