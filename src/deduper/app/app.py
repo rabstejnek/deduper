@@ -135,7 +135,10 @@ def render_results():
                 radio_button = ui.tags.input(value=y,type="radio",name=id,**checked)
                 cols = [core_ui.column(1,radio_button)]
                 for col_name in [("id","ID",1),("year","Year",1),("title","Title",3),("authors","Authors",2),("abstract","Abstract",4)]:
-                    col_contents = ui.div({"class":"overflow-auto","style":"max-height:150px;"},ui.div({"class":"fw-bold"},col_name[1]),data.get(col_name[0],""))
+                    value = data.get(col_name[0],"")
+                    if col_name[0] == "id" and (url:=ID_URL_MAP.get(input["id_url_select"]())) is not None:
+                        value = ui.a(value,target="_blank",href=url.format(id=value))
+                    col_contents = ui.div({"class":"overflow-auto","style":"max-height:150px;"},ui.div({"class":"fw-bold"},col_name[1]),value)
                     cols.append(ui.div({"class":f"col-sm-{col_name[2]}"},col_contents))
                 row = core_ui.row(*cols)
                 rows.append(row)
