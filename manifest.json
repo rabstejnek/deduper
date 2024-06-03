@@ -16,7 +16,7 @@
   },
   "files": {
     "requirements.txt": {
-      "checksum": "f9b1fee7e006ecd8d15f204f94471d9b"
+      "checksum": "537da99e5b43052ed9097be71de821e0"
     },
     "pyproject.toml": {
       "checksum": "18a2a8aa2862ab5d1a0377754d57ebd3"
@@ -28,13 +28,16 @@
       "checksum": "44f32dd2724ac73068bbaee0322c1878"
     },
     "src/deduper/app/app.py": {
-      "checksum": "5df0ece3696b669c56d2da2ce983396a"
+      "checksum": "6d59629aad92aa6f4bec44ac2a23d7ed"
     },
     "src/deduper/app/constants.py": {
       "checksum": "52040788eb431a6a92d5495a499cd083"
     },
     "src/deduper/app/deploy.py": {
       "checksum": "aed3b3724ad6f8aefa1bdd176be0b25b"
+    },
+    "src/deduper/app/icons.py": {
+      "checksum": "010f4901212aba25c2cc94b0e7ecd11d"
     },
     "src/deduper/dedupe.py": {
       "checksum": "9609d0b41f8878d5ea20a9d145118960"
